@@ -85,7 +85,7 @@ main {
 
 /* Homepage */
 .jumbotron-container {
-    background-image: url("https://res.cloudinary.com/de9lbkrcb/image/upload/v1703947680/pexels-maarten-van-den-heuvel-2284166_1_g1bgrv.jpg");
+    background-image: url("https://res.cloudinary.com/de9lbkrcb/image/upload/v1703950111/AdobeStock_264404215-min_le7v5j.jpg");
     background-color: rgba(0, 0, 0, 0.3);
     background-blend-mode: overlay;
     height: 500px;
@@ -94,6 +94,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 2rem;
     }
 
 
@@ -122,6 +123,7 @@ main {
 #hero-text {
     color: var(--off-white);
     font-weight: 500;
+    font-size: 3.1rem;
 }
 
 /* Footer */

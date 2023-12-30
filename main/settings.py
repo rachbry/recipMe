@@ -52,6 +52,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'djrichtextfield',
+    'cloudinary',
+    'cloudinary_storage',
+    'whitenoise.runserver_nostatic',
 ]
 
 SITE_ID = 1
@@ -59,6 +62,7 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -175,8 +179,11 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Cloudinary Settings
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
