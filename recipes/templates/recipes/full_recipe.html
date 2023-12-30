@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Recipe - {{recipe.title}}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 my-4 d-flex justify-content-center">
+            <img src="{{recipe.image.url}}" alt="{{recipe.image_alt}}" class="recipe-pic">
+        </div>
+        <div class="col-md-8 mb-4">
+            <h2 class="my-1">{{recipe.title}}</h2>
+            <p class="mute">Posted on {{recipe.posted_date}}</p>
+            <div id="recipeDescriptionContainer" class="description-container">
+                <p class="card-text" id="recipeDescription">
+                    {{recipe.description}}
+                </p>
+            </div>
+            <hr>
+            <div class="d-flex align-items-center justify-content-between px-4">
+                {% if recipe.freezable %}
+                <p class="special-text"><i class="fa-solid fa-snowflake freeze"></i> suitable for freezing</p>
+                {% else %}
+                <p class="special-text"><i class="fa-solid fa-ban fa-xlg freeze"></i> not suitable for freezing</p>
+                {% endif %}
+                <p class="special-text">servings: {{recipe.servings}}</p>
+            </div>
+            <hr>
+            <!-- BUTTONS - EDIT, DELETE AND FAVOURITES -->
+            <div class="container recipe-button d-flex justify-content-between">
+                <a href="{% url 'edit_recipe' recipe.id %}" class="btn recipe-page-buttons w-25 mx-1">
+                    <i class="fas fa-edit icon-edit icon-buttons"></i>
+                    <p class="icon-text special-text">Edit</p>
+                </a>
+                <a href="{% url 'delete_recipe' recipe.id %}" class="btn recipe-page-buttons w-25 mx-1">
+                    <i class="fas fa-trash-alt icon-delete icon-buttons"></i>
+                    <p class="icon-text special-text">Delete</p>
+                </a>
+                <!-- favourites button -->
+                {% if request.user.is_authenticated %}
+                {% if fav %}
+                <a href="{% url 'favourite_add' recipe.id %}" class="btn recipe-page-buttons w-33 mx-1">
+                    <i class="fas fa-star icon-favourite icon-buttons"></i>
+                    <p class="icon-text special-text">favourite</p>
+                </a>
+                {% else %}
+                <a href="{% url 'favourite_add' recipe.id %}" class="btn recipe-page-buttons w-33 mx-1">
+                    <i class="far fa-star icon-favourite icon-buttons"></i>
+                    <p class="icon-text special-text">favourite</p>
+                </a>
+                {% endif %}
+                {% else %}
+                <a href="{% url 'account_signup' %}" class="btn recipe-page-buttons w-33 mx-1">
+                    <i class="fa-regular fa-star icon-favourite icon-buttons"></i>
+                    <p class="icon-text special-text">favourite</p>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card card-recipe-info">
+                <div class="card-body">
+                    <h3 class="card-title">Ingredients</h3>
+                    <p class="card-text justify-text">{{recipe.ingredients|safe}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <div class="card card-recipe-info">
+                <div class="card-body">
+                    <h3 class="card-title">Method</h3>
+                    <p class="card-text justify-text">{{recipe.instructions|safe}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

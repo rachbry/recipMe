@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Recipe{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form method="post" enctype="multipart/form-data" class="p-2 form">
+        <h1 class="text-center">Add Recipe</h1>
+        {% csrf_token %}
+        <!-- Display success message -->
+        {% if messages %}
+        <div class="latest-message">
+            {{ messages.0 }} {# Use index 0 to get the first message #}
+        </div>
+        {% endif %}
+        {{ form.media }}
+        {{ form| crispy }}
+        <div class="text-center">
+            <button type="submit" class="btn button-action mt-2">Create Recipe</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

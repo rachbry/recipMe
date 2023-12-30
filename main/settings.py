@@ -47,8 +47,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     #Apps
     'home',
+    'recipes',
     #Other
-
+    'crispy_forms',
+    'crispy_bootstrap4',
+    'djrichtextfield',
 ]
 
 SITE_ID = 1
@@ -66,6 +69,22 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
 ]
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+DJRICHTEXTFIELD_CONFIG = {
+    'js': ['//cdn.ckeditor.com/4.14.0/standard/ckeditor.js'],
+    'init_template': 'djrichtextfield/init/ckeditor.js',
+    'settings': {
+        'toolbar': [
+            ['Format', 'Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList'], ['Undo', 'Redo'],
+            ['Maximize']
+        ],
+        'format_tags': 'p;h1;h2;h3'
+    }
+}
+
 ROOT_URLCONF = 'main.urls'
 
 TEMPLATES = [
@@ -79,6 +98,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
             ],
         },
     },
