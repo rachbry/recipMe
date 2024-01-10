@@ -33,10 +33,10 @@ ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 'www.recipme.com', 'recipme.com'
 
 
 # Added these to fix deployed issues
-SECURE_SSL_REDIRECT = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-CSRF_COOKIE_DOMAIN = ".recipme.com"
-CSRF_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# CSRF_COOKIE_DOMAIN = ".recipme.com"
+# CSRF_COOKIE_SECURE = True
 
 # Application definition
 
