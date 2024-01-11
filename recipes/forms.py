@@ -35,7 +35,7 @@ class RecipeForm(forms.ModelForm):
             'image': 'Recipe Image',
             'image_alt': 'Describe Image',
             'recipe_types': 'Recipe Type',
-            'cooking_method': 'Coking Method',
+            'cooking_method': 'Cooking Method',
             'servings': 'Servings',
             'vegetarian': 'Vegetarian?',
             'freezable': 'Freezable?',
