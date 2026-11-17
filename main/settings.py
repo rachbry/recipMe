@@ -30,8 +30,17 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 'www.recipme.com', 'recipme.com']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    '.herokuapp.com',
+    'www.recipme.com',
+    'recipme.com',
+]
 
+render_hostname = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if render_hostname:
+    ALLOWED_HOSTS.append(render_hostname)
 
 # Added these to fix deployed issues
 # SECURE_SSL_REDIRECT = True
